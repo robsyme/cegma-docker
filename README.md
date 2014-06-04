@@ -15,3 +15,11 @@ Alternatively, you can simply take the Dockerfile from this repo and build it yo
     docker build -t cegma:v2.5 .
     docker run -it cegma:v2.5 bash
 
+
+Once you have the docker image, you can run cegma. Let's say I have some data at /path/to/data/assembly.fasta. I can run cegma on these data with the command
+
+    docker run -t -i -v /path/to/data:/data robsyme/cegma:v2.5 bash
+
+and then run cegma
+
+    cegma -g /data/assembly.fasta -o /data/cegmatest
