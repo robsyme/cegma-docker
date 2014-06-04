@@ -5,7 +5,8 @@ Setting up a CEGMA installation can sometimes be a pain. This Dockerfile will bu
 
 The easiest way to use CEGMA is to pull the trusted docker build image from index.docker.io
 
-    
+    docker pull robsyme/cegma-docker
+
 Alternatively, you can simply take the Dockerfile from this repo and build it yourself
 
     wget https://github.com/robsyme/cegma-docker/archive/v2.5.tar.gz
