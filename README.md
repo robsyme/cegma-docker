@@ -3,16 +3,14 @@ CEGMA in a Docker Container
 
 Setting up a CEGMA installation can sometimes be a pain. This Dockerfile will build a container for CEGMA and all of its dependencies.
 
-The easiest way to use CEGMA is to pull the trusted docker build image from index.docker.io
-
-    docker pull robsyme/cegma-docker
-
-Once you have the docker image, you can run cegma. Let's say I have some data at /path/to/data/scaffolds.fasta. I can run cegma on these data with the commands
+Let's say I have some data at /path/to/data/scaffolds.fasta. If you have docker, it's as easy as:
 
     cd /path/to/data
     docker run -v `pwd`:/data -w /data robsyme/cegma:latest cegma -g scaffolds.fasta
 
 ![docker run command explanation](http://i.imgur.com/rCOyJwN.png)
+
+This will download the [latest cegma-docker image](https://index.docker.io/u/robsyme/cegma-docker/) from index.docker.io, make a new container, mount the host directory inside the container and run cegma on the file 'scaffolds.fasta', just as if you'd installed cegma and all it's dependencies yourself on the host. When cegma is finished, docker closes the container. If you want docker to delete the container when cegma is done, just add '--rm=true'. Note that this won't delete your cegma results, just the container.
 
 If you're on ubuntu 14.04 and don't have docker, you can install it with the incantation
 
