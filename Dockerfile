@@ -18,8 +18,7 @@ RUN apt-get install -y wise && \
     wget http://korflab.ucdavis.edu/datasets/cegma/wise2.2.3-rc7.tar.gz && \
     tar xfz wise*.tar.gz && \
     rm wise*.tar.gz && \
-    cd wise2.2.3-rc7 && \
-    echo "export WISECONFIGDIR=`pwd`/wisecfg" >> ~/.bashrc
+    ln -s wise2.2.3-rc7 current
 
 
 # Install HMMER
@@ -32,10 +31,9 @@ RUN mkdir -p /opt/geneid && \
     wget ftp://genome.crg.es/pub/software/geneid/geneid_v1.4.4.Jan_13_2011.tar.gz && \
     tar xfz geneid*.tar.gz && \
     rm geneid*.tar.gz && \
-    cd geneid && \
-    make && \
-    echo "export PATH=\$PATH:`pwd`/bin" >> ~/.bashrc
-
+    mv geneid current && \
+    cd current && \
+    make
 
 # Install ncbi-blast+
 RUN apt-get install -y ncbi-blast+
@@ -47,7 +45,9 @@ RUN cd /opt/ && \
     tar -xzvf v2.5.tar.gz && \
     mv CEGMA_v2-2.5 cegma && \
     cd cegma && \
-    make && \
-    echo "export CEGMA=`pwd`" >> ~/.bashrc && \
-    echo "export PERL5LIB=\$PERL5LIB:\$CEGMA/lib" >> ~/.bashrc && \
-    echo "export PATH=\$PATH:\$CEGMA/bin" >> ~/.bashrc
+    make
+
+ENV WISECONFIGDIR /opt/genewise/current/wisecfg/
+ENV CEGMA /opt/cegma
+ENV PERL5LIB $CEGMA/lib
+ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$CEGMA/bin:/opt/geneid/current/bin/
