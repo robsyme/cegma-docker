@@ -7,7 +7,7 @@ The easiest way to use CEGMA is to pull the trusted docker build image from inde
 
     docker pull robsyme/cegma-docker
 
-Once you have the docker image, you can run cegma. Let's say I have some data at /path/to/data/assembly.fasta. I can run cegma on these data with the commands
+Once you have the docker image, you can run cegma. Let's say I have some data at /path/to/data/scaffolds.fasta. I can run cegma on these data with the commands
 
     cd /path/to/data
     docker run -v `pwd`:/data -w /data robsyme/cegma:v2.5 cegma -g scaffolds.fasta
