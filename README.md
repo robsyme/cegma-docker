@@ -6,9 +6,9 @@ Setting up a CEGMA installation can sometimes be a pain. This Dockerfile will bu
 Let's say I have some data at /path/to/data/scaffolds.fasta. If you have docker, it's as easy as:
 
     cd /path/to/data
-    docker run -v `pwd`:/data -w /data robsyme/cegma:latest cegma -g scaffolds.fasta
+    docker run -v `pwd`:/data -w /data robsyme/cegma-docker:latest cegma -g scaffolds.fasta
 
-![docker run command explanation](http://i.imgur.com/rCOyJwN.png)
+![docker run command explanation](http://i.imgur.com/yZRmsmD.png)
 
 This will download the [latest cegma-docker image](https://index.docker.io/u/robsyme/cegma-docker/) from index.docker.io, make a new container, mount the host directory inside the container and run cegma on the file 'scaffolds.fasta', just as if you'd installed cegma and all it's dependencies yourself on the host. When cegma is finished, docker closes the container. If you want docker to delete the container when cegma is done, just add '--rm=true'. Note that this won't delete your cegma results, just the container.
 
